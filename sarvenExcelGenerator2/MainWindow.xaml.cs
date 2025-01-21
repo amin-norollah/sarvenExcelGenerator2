@@ -50,6 +50,11 @@ namespace sarvenExcelGenerator
 
                 string monthName = culture.DateTimeFormat.GetMonthName(month);
 
+                bool isHolidayThursday = HolidayThursday.IsChecked ?? false;
+                bool isHolidayFriday = HolidayFriday.IsChecked ?? false;
+                bool isHolidaySaturday = HolidaySaturday.IsChecked ?? false;
+                bool isHolidaySunday = HolidaySunday.IsChecked ?? false;
+
                 // Parse user-provided holiday dates
                 var holidayDates = ParseHolidayDates(HolidayInput.Text);
 
@@ -62,7 +67,10 @@ namespace sarvenExcelGenerator
                 {
                     var date = calendar.ToDateTime(year, month, day, 0, 0, 0, 0);
 
-                    bool isHoliday = holidayDates.Contains(day);
+                    bool isHoliday = holidayDates.Contains(day) || (isHolidayThursday && date.DayOfWeek == DayOfWeek.Thursday) ||
+                    (isHolidayFriday && date.DayOfWeek == DayOfWeek.Friday) ||
+                    (isHolidaySaturday && date.DayOfWeek == DayOfWeek.Saturday) ||
+                    (isHolidaySunday && date.DayOfWeek == DayOfWeek.Sunday);
 
                     entries.Add(new ScheduleEntry
                     {
@@ -72,7 +80,7 @@ namespace sarvenExcelGenerator
                         EndHour = "",
                         Difference = "",
                         Description = "",
-                        IsHoliday = isHoliday || date.DayOfWeek == DayOfWeek.Thursday || date.DayOfWeek == DayOfWeek.Friday
+                        IsHoliday = isHoliday
                     });
                 }
 
