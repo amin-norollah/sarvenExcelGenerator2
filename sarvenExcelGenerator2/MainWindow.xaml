@@ -1,0 +1,37 @@
+﻿<Window x:Class="sarvenExcelGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Excel Generator" Height="399" Width="331" ResizeMode="NoResize" Icon="/icon.jpeg" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Select a month and year, choose a language, list holidays to highlight them in Excel with color." Margin="10,5,5,15" Grid.Row="0" TextWrapping="Wrap" FontSize="12" Opacity="0.6"/>
+
+        <TextBlock Text="Select Month:" Margin="10,5,5,5" Grid.Row="1"/>
+        <DatePicker x:Name="MonthPicker" Margin="159,5,0,5" Grid.Row="1" HorizontalAlignment="Left" Width="122"/>
+
+        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="2">
+            <TextBlock Text="Language:" Margin="5" Width="144"/>
+            <ComboBox x:Name="LanguageSelector" Width="121">
+                <ComboBoxItem Content="English"/>
+                <ComboBoxItem Content="Persian" IsSelected="True"/>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="5" Grid.Row="3">
+            <TextBlock Text="Enter Holiday Dates (e.g., 1,13,27):" Margin="5" />
+            <TextBox x:Name="HolidayInput" Width="200" Margin="6" Padding="5" />
+        </StackPanel>
+
+        <Button Content="Generate Excel" Grid.Row="4" Margin="0,35,0,-61" Click="OnGenerateExcelClick" HorizontalAlignment="Center" Width="250" Grid.RowSpan="2"/>
+
+        <TextBlock Text="© Specified for use by Ms. Bagheri" Margin="5,133,5,-113" Grid.Row="5" TextWrapping="Wrap" FontSize="10" Opacity="0.6"/>
+    </Grid>
+</Window>
