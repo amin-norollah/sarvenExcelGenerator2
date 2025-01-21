@@ -200,7 +200,7 @@ namespace sarvenExcelGenerator
                 worksheet.Cell(row, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 worksheet.Range(row, 1, row, 4).Merge(); // Merge first 4 cells in the last row
                 worksheet.Cell(row, 5).FormulaA1 = $"SUM(E3:E{row - 1})";
-                worksheet.Cell(row, 5).Style.DateFormat.Format = "h:mm:ss";
+                worksheet.Cell(row, 5).Style.DateFormat.Format = "[h]:mm:ss";
                 worksheet.Cell(row, 5).Style.Font.Bold = true;
 
                 // Style the total row
